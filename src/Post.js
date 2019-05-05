@@ -473,8 +473,8 @@ export default class Post {
                 <i class="material-icons">more_vert</i>
               </button>
               <ul class="fp-menu-list mdl-menu mdl-js-menu mdl-menu--bottom-right" for="fp-post-menu-${postId}">
-                <li class="mdl-menu__item fp-report-post"><i class="material-icons">report</i> Report</li>
-                <li class="mdl-menu__item fp-delete-post"><i class="material-icons">delete</i> Delete post</li>
+                <li class="mdl-menu__item fp-report-post"><i class="material-icons">report</i> Reportar</li>
+                <li class="mdl-menu__item fp-delete-post"><i class="material-icons">delete</i> Deletar Post</li>
               </ul>
             </div>
             <div class="fp-image"></div>
@@ -490,7 +490,7 @@ export default class Post {
               <form class="fp-add-comment" action="#">
                 <div class="mdl-textfield mdl-js-textfield">
                   <input class="mdl-textfield__input">
-                  <label class="mdl-textfield__label">Comment...</label>
+                  <label class="mdl-textfield__label">Comentar...</label>
                 </div>
               </form>
             </div>
@@ -519,15 +519,15 @@ export default class Post {
             <i class="material-icons">more_vert</i>
           </button>
           <ul class="fp-menu-list mdl-menu mdl-js-menu mdl-menu--top-right" for="fp-comment-menu-${escapedId}">
-            <li class="mdl-menu__item fp-report-comment"><i class="material-icons">report</i> Report</li>
-            <li class="mdl-menu__item fp-edit-comment"><i class="material-icons">mode_edit</i> Edit</li>
-            <li class="mdl-menu__item fp-delete-comment"><i class="material-icons">delete</i> Delete comment</li>
+            <li class="mdl-menu__item fp-report-comment"><i class="material-icons">report</i> Reportar</li>
+            <li class="mdl-menu__item fp-edit-comment"><i class="material-icons">mode_edit</i> Editar</li>
+            <li class="mdl-menu__item fp-delete-comment"><i class="material-icons">delete</i> Deletar comentário</li>
           </ul>
         </div>`);
       $('.fp-delete-comment', element).click(() => {
-        if (window.confirm('Delete the comment?')) {
+        if (window.confirm('Deletar comentário?')) {
           this.firebaseHelper.deleteComment(postId, commentId).then(() => {
-            element.text('this comment has been deleted');
+            element.text('Esse comentário foi deletado.');
             element.addClass('fp-comment-deleted');
           });
         }

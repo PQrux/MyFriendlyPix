@@ -67,7 +67,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// Initialize Google Analytics.
+//Initialize Google Analytics.
 import(/* webpackPrefetch: true */ 'universal-ga').then((analytics) => {
   analytics.initialize('UA-25993200-10');
   analytics.pageview('/');
