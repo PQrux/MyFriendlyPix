@@ -549,7 +549,7 @@ export default class FirebaseHelper {
    * Uploads a new Picture to Cloud Storage and adds a new post referencing it.
    * This returns a Promise which completes with the new Post ID.
    */
-  uploadNewPic(pic, thumb, fileName, text) {
+  uploadNewPic(pic, thumb, fileName, text, location) {
     // Get a reference to where the post will be created.
     const newPostKey = this.database.ref('/posts').push().key;
 
@@ -586,6 +586,7 @@ export default class FirebaseHelper {
       const update = {};
       update[`/posts/${newPostKey}`] = {
         full_url: urls[0],
+        location: location,
         thumb_url: urls[1],
         text: text,
         client: 'web',

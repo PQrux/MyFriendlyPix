@@ -20,6 +20,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import page from 'page';
 import {MaterialUtils} from './Utils';
+import Coordinates from './Coordinates';
 
 /**
  * Handles uploads of new pics.
@@ -209,17 +210,26 @@ export default class Uploader {
   }
 
   /**
+   * Verifica a localização do usuário
+   */
+
+
+  /**
    * Uploads the pic to Cloud Storage and add a new post into the Firebase Database.
    */
   async uploadPic(e) {
     e.preventDefault();
     this.disableUploadUi(true);
     const imageCaption = this.imageCaptionInput.val();
-
+  
     const pics = await this.generateImages();
+    
+    const coordinates = new Coordinates();
+    let location = null;
+    location = await coordinates.getUserGeolocationText();
     // Upload the File upload to Cloud Storage and create new post.
     try {
-      const postId = await this.firebaseHelper.uploadNewPic(pics.full, pics.thumb, this.currentFile.name, imageCaption);
+      const postId = await this.firebaseHelper.uploadNewPic(pics.full, pics.thumb, this.currentFile.name, imageCaption, location);
       page(`/user/${this.auth.currentUser.uid}`);
       const data = {
         message: 'New pic has been posted!',

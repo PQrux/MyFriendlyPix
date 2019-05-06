@@ -72,7 +72,7 @@ export default class Feed {
       }
       post.fillPostData(postIds[i], postData.thumb_url || postData.url,
           postData.text, postData.author, postData.timestamp, postData.thumb_storage_uri,
-          postData.full_storage_uri, postData.full_url);
+          postData.full_storage_uri, postData.full_url,postData.location);
     }
   }
 

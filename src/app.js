@@ -24,6 +24,9 @@ import Router from './Router';
 import 'material-design-lite';
 import {Utils} from './Utils';
 
+
+import Coordinates from './Coordinates';
+
 // Styling
 import 'material-design-icons/iconfont/material-icons.css';
 import 'typeface-amaranth/index.css';
@@ -58,13 +61,13 @@ $(document).ready(() => {
   // Starts the router.
   window.fpRouter = new Router(auth);
 });
-
 // Register the Service Worker that enables offline.
 if ('serviceWorker' in navigator) {
   // Use the window load event to keep the page load performant
   $(window).on('load', () => {
     window.navigator.serviceWorker.register('/workbox-sw.js');
   });
+
 }
 
 //Initialize Google Analytics.

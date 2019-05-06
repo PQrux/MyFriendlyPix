@@ -72,7 +72,7 @@ export default class Post {
       }
     } else {
       this.fillPostData(snapshot.key, post.thumb_url || post.url, post.text, post.author,
-          post.timestamp, post.thumb_storage_uri, post.full_storage_uri, post.full_url);
+          post.timestamp, post.thumb_storage_uri, post.full_storage_uri, post.full_url, post.location);
     }
   }
 
@@ -155,7 +155,7 @@ export default class Post {
    * Fills the post's Card with the given details.
    * Also sets all auto updates and listeners on the UI elements of the post.
    */
-  async fillPostData(postId, thumbUrl, imageText, author = {}, timestamp, thumbStorageUri, picStorageUri, picUrl) {
+  async fillPostData(postId, thumbUrl, imageText, author = {}, timestamp, thumbStorageUri, picStorageUri, picUrl, location=null) {
     const post = this.postElement;
 
     MaterialUtils.upgradeDropdowns(this.postElement);
@@ -165,6 +165,11 @@ export default class Post {
     $('.fp-avatar', post).css('background-image',
         `url(${Utils.addSizeToGoogleProfilePic(author.profile_picture) || '/images/silhouette.jpg'})`);
     $('.fp-username', post).text(author.full_name || 'Anonymous');
+    if(location!=null){
+      $('#fp-location', post).text(location);
+      $('#fp-location-icon',post).text("location_on");
+      $('#fp-location-icon',post).css("color","red");
+    }
 
     // Shows the pic's thumbnail.
     this._setupThumb(thumbUrl, picUrl);
@@ -478,6 +483,7 @@ export default class Post {
               </ul>
             </div>
             <div class="fp-image"></div>
+            <i id="fp-location-icon" class="material-icons" style="color: gray;">location_off</i><a id="fp-location"></a>
             <div class="fp-likes">0 likes</div>
             <div class="fp-first-comment"></div>
             <div class="fp-morecomments">View more comments...</div>
